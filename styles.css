@@ -181,6 +181,12 @@
 }
 
 @layer layout {
+  .flex-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
   .flow > * + * {
     margin-top: var(--flow-spacer, 1em);
   }
@@ -374,6 +380,42 @@
     --card-gap: 0.75rem;
   }
 
+  .faq-bento {
+    display: grid;
+    gap: 1rem;
+    grid-template-areas:
+      "card-one"
+      "card-two"
+      "card-three"
+      "card-four";
+
+    @media (width > 600px) {
+      grid-template-areas:
+        "card-four card-one"
+        "card-three card-two";
+    }
+
+    @media (width > 760px) {
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-areas:
+        "card-one card-two card-four"
+        "card-three card-three card-four";
+    }
+
+    :nth-child(1) {
+      grid-area: card-one;
+    }
+    :nth-child(2) {
+      grid-area: card-two;
+    }
+    :nth-child(3) {
+      grid-area: card-three;
+    }
+    :nth-child(4) {
+      grid-area: card-four;
+    }
+  }
+
   .card {
     /* display: grid; */
     display: flex;
@@ -451,6 +493,14 @@
       color: var(--text-high-contrast);
       background-color: var(--background-accent-light);
     }
+  }
+
+  select {
+    padding: 0.5rem 1rem;
+    background-color: var(--background-accent-main);
+    border: 0;
+    border-radius: var(--border-radius-2);
+    color: var(--text-high-contrast);
   }
 }
 
